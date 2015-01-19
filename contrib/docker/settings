@@ -1,0 +1,87 @@
+LANGUAGE_CODE = 'pl-PL'
+DEBUG=True
+ALLOWED_HOSTS='*'
+SECRET_KEY = 'not_so_secret'
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake'
+    }
+}
+
+DATABASES = {
+    'default': {
+      'ENGINE': 'django.db.backends.mysql',
+      'NAME': 'selena',
+      'USER': 'selena',
+      'PASSWORD': 'selena',
+      'HOST': '127.0.0.1',
+      'PORT': '3306',
+      'OPTIONS': {
+          'init_command': 'SET storage_engine=INNODB,character_set_connection=utf8,collation_connection=utf8_unicode_ci',
+      }
+    }
+}
+
+RQ_QUEUES = {
+    'default': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        'DB': 0,
+        'PASSWORD': 'foobared',
+        'DEFAULT_TIMEOUT': 360,
+    },
+   'aaa': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        'DB': 0,
+        'PASSWORD': 'foobared',
+        'DEFAULT_TIMEOUT': 360,
+    },
+   'monitors': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        'DB': 0,
+        'PASSWORD': 'foobared',
+        'DEFAULT_TIMEOUT': 360,
+    },
+   'dispacher': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        'DB': 0,
+        'PASSWORD': 'foobared',
+        'DEFAULT_TIMEOUT': 360,
+    },
+
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(asctime)s %(levelname)s %(module)s line:%(lineno)d: %(message)s'
+        },
+        'vverbose': {
+            'format': '%(asctime)s %(levelname)s %(pathname)s line:%(lineno)d: "%(message)s"'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+}
+} 
+
+LOCALE_PATHS= ('/home/local/ALLEGROGROUP/lukasz.jernas/PRACA/selena/src/selena/locale',)
